@@ -1,5 +1,5 @@
 ---
-layout: frontpage
+layout: singlepost
 title: "One of Many First Posts"
 ---
 
