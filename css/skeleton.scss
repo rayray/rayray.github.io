@@ -44,11 +44,8 @@ $dark-grey: #333 !default;
 $primary-color: #33c3f0 !default;
 $secondary-color: lighten($dark-grey, 13.5%) !default;
 $border-color: #bbb !default;
-$link-color: #1eaedb !default;
+$link-color: purple !default;
 $font-color: #222 !default;
-
-// Typography
-$font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 
 //Grid Variables
 $container-width: 960px !default;
@@ -68,6 +65,48 @@ $global-radius: 4px !default;
 
 @function grid-offset-length($n) {
   @return grid-column-width($n) + $column-margin;
+}
+
+// ray custom
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+$font-header: "Righteous", cursive;
+$font-body: "Libre Baskerville", serif;
+
+.header {
+  background-color: purple;
+  color: white;
+  margin-bottom: 2rem;
+  .logo {
+    font-family: $font-header;
+    font-size: 7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .logo-text {
+      border: 1rem solid white;
+      line-height: 6rem;
+      padding-right: .5rem;
+      padding-left: .5rem;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+    }
+  }
+  .links {
+    text-align: right;
+    font-size: 2rem;
+    padding-right: 1rem;
+    a {
+      color: white;
+      text-decoration: none;
+    }
+  }
+}
+
+.pagination {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #808080;
 }
 
 // Grid
@@ -181,7 +220,7 @@ body {
   font-size: 1.5em; // currently ems cause chrome bug misinterpreting rems on body element
   line-height: 1.6;
   font-weight: 400;
-  font-family: $font-family;
+  font-family: $font-body;
   color: $font-color;
 }
 
