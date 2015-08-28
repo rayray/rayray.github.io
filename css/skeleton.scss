@@ -77,6 +77,10 @@ $font-body: "Libre Baskerville", serif;
   background-color: purple;
   color: white;
   margin-bottom: 2rem;
+  a {
+      color: white;
+      text-decoration: none;
+  }
   .logo {
     font-family: $font-header;
     font-size: 7rem;
@@ -96,10 +100,6 @@ $font-body: "Libre Baskerville", serif;
     text-align: right;
     font-size: 2rem;
     padding-right: 1rem;
-    a {
-      color: white;
-      text-decoration: none;
-    }
   }
 }
 
