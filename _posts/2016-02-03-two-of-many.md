@@ -5,7 +5,7 @@ title: Tracking Migration Progress with NSMigrationManager and NSEntityMigration
 
 Several months ago, I needed to make an iOS app perform a manual Core Data migration. Because the model
 was storing images as binary data, we found migrations could take several minutes if
-there were, say, 200 images stored in 200 objects. Sounds like we 
+there were, say, 200 images stored in 200 objects. Sounds like a job for Improved UX!
 
 (There's a side lesson here: don't store images in Core Data. Even though the docs state that data
 larger than 1MB will be stored on the filesystem if you set the `Allows External Storage` flag, it's
