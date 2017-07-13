@@ -3,21 +3,18 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>{{ page.title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="author" content="Raymond Edwards">
 	<meta name="description" content="I just don't know.">
-	<link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700|Righteous' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="/css/skeleton.css">
+	<link rel="stylesheet" href="/css/stylin.css">
 </head>
 <body>
-	<div class="container">
-        {% include header.html %}
-        <div class="row">
-            <div class="u-full-width">
-            	<h1>{{ page.title }}</h1>
-            	<h5>{{ page.date | date_to_string }}</h5>
-                {{content}}
-            </div>
-        </div>   
-    </div>
+	{% include header.html %}
+    <h1>{{ page.title }}</h1>
+    <h4>{{ page.date | date_to_string }}</h4>
+    <article>
+        {{content}}
+    </article>
+    <a href="//twitter.com/raymondedwards">@raymondedwards</a>
 </body>
 </html>

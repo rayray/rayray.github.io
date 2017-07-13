@@ -5,8 +5,10 @@ title: raymond's cool web pagearama
 
 {% for post in paginator.posts %}
   <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
-  <h5>{{ post.date | date_to_string }}</h5>
-  {{ post.content }}
+  <h4>{{ post.date | date_to_string }}</h4>
+  <article>
+    {{ post.content }}
+  </article>
 {% endfor %}
 
 <div class="pagination">

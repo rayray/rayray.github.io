@@ -4,23 +4,7 @@ title: "One of Many First Posts"
 ---
 
 Hello there. I'm starting this blog because I want to write about the things
-that annoy me, as well as the things I enjoy. Excuse me, I'm going to play
-around with some text.
+that annoy me, as well as the things I enjoy. Maybe I'll try imparting some good and cool lessons
+I've learned, but please bear with me while I work on my writing skillz -- sorry, *skills*.
 
-## Here is a header.
-
-~~~
-console.log("bleep bloop here is some code");
-var doAThing = function () {
-	var x = 16;
-	eval(yourFace);	
-};
-~~~
-
-> Quotin dis
->
-> and dis
->
-> Twas my heart be taken by the food truck operator
-
-Well, that's all for now. Maybe I'll see you around.
+Also, the CSS is a work-in-progress. tl;dr: If you ever come back, you should see some improvement.
