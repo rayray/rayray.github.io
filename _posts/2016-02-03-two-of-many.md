@@ -3,13 +3,11 @@ layout: singlepost
 title: Tracking Migration Progress with NSMigrationManager and NSEntityMigrationPolicy
 ---
 
-Several months ago, I needed to make an iOS app perform a manual Core Data migration. Because the model
-was storing images as binary data, we found migrations could take several minutes if
+Several months ago, I needed to perform a manual Core Data migration in an iOS app. Because the model
+stored images as binary data, we found our previous automatic migrations could take several minutes if
 there were, say, 200 images stored in 200 objects. Sounds like a job for Improved UX!
 
-(There's a side lesson here: don't store images in Core Data. Even though the docs state that data
-larger than 1MB will be stored on the filesystem if you set the `Allows External Storage` flag, it's
-still much slower compared to storing images directly to disk. I'll come back to this in a later post.)
+(There's a side lesson here: don't store images in Core Data. I'll expand on this a later post.)
 
 ## So You Want To Show Migration Progress
 
@@ -58,13 +56,11 @@ I wrote a class to handle the migration and pass along info about progress.
 Ugh, that's a lot of code to just to get a progress update.
 
 But it's even worse than we thought. If we have `NSEntityMigrationPolicy`s for our objects, we will see 
-that `migrationProgress` **stops incrementing** while those get executed for each object. 😭 My memory is fuzzy
-now, but I recall the value sitting at `0.33` while the policies were running, and then incrementing smoothly
-once they were all done.
+that `migrationProgress` **stops incrementing** while our custom policies get executed for each object. 😭
 
-However, since we're already customizing the migration of individual objects ourselves, we can get the 
+However, since we're already customizing the migration of individual objects, we can get the 
 total count of those objects the first time our policy is called and update the `userInfo` dictionary 
-on the `NSMigrationManager` object!
+on the `NSMigrationManager` object.
 
     class Policy: NSEntityMigrationPolicy {
         override func createDestinationInstances(forSource sInstance: NSManagedObject, in mapping: NSEntityMapping, manager: NSMigrationManager) throws {
@@ -98,7 +94,7 @@ in our `MigrationManager` container class.
 
     manager.addObserver(self, forKeyPath: "userInfo", options: .new, context: nil)
 
-And then in our `observe` override, we can figure out how to display that value to the user. Since
+And then in our `observeValue` override, we can figure out how to display that value to the user. Since
 I was dealing with user-created images, it was useful enough to say "Hey, we've moved X out Y images!"
 while the user waited. People love watching numbers go up.
 
