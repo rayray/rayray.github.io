@@ -1,17 +1,15 @@
 ---
 layout: singlepost
-title: Tracking Migration Progress with NSMigrationManager and NSEntityMigrationPolicy
+title: Tracking Core Data Migration Progress
 ---
 
-Several months ago, I needed to perform a manual Core Data migration in an iOS app. Because the model
-stored images as binary data, we found our previous automatic migrations could take several minutes if
-there were, say, 200 images stored in 200 objects. Sounds like a job for Improved UX!
+Several months ago, I needed to perform a big Core Data migration in an iOS app. So big that it could take more than a couple minutes if the user made a lot of content with images.
 
-(There's a side lesson here: don't store images in Core Data. I'll expand on this a later post.)
+Aside: This migration needed to happen because someone wanted to store the images in Core Data many years ago. Woops! Even if you check the `Allows External Storage` box in Xcode, interacting with stored blobs through Core Data is painfully slow.
 
-## So You Want To Show Migration Progress
+## So I Wanted To Show Migration Progress
 
-I wrote a class to handle the migration and pass along info about progress. 
+I wrote a class to handle the migration and pass along progress to a delegate. 
 
     // updated for Swift 3
     class MigrationManager: NSObject {
@@ -53,10 +51,10 @@ I wrote a class to handle the migration and pass along info about progress.
         }
     }
 
-Ugh, that's a lot of code to just to get a progress update.
+Ugh, that's a lot of code to just to get a progress update to show the user.
 
-But it's even worse than we thought. If we have `NSEntityMigrationPolicy`s for our objects, we will see 
-that `migrationProgress` **stops incrementing** while our custom policies get executed for each object. 😭
+But it's worse than we thought. Once the migration is running, if we have `NSEntityMigrationPolicy`s for our objects, we will see 
+that `migrationProgress` **stops incrementing** while our policies get applied to each object. 😭
 
 However, since we're already customizing the migration of individual objects, we can get the 
 total count of those objects the first time our policy is called and update the `userInfo` dictionary 
@@ -94,13 +92,8 @@ in our `MigrationManager` container class.
 
     manager.addObserver(self, forKeyPath: "userInfo", options: .new, context: nil)
 
-And then in our `observeValue` override, we can figure out how to display that value to the user. Since
-I was dealing with user-created images, it was useful enough to say "Hey, we've moved X out Y images!"
-while the user waited. People love watching numbers go up.
+And then in our `observeValue` override, we can figure out how to display that value to the user. It's useful enough to say "Hey, we've moved X out Y images!"
+while the user waits. People love watching numbers go up.
 
-This solution at least gives us further insight into progress for objects that are migrated with a
-custom policy. Given the tight time constraints when I wrote this, I was happy to just be able to combine the
-object count with the progress value that `NSMigrationManager` gave me. (There may be a better way!)
-
-If you see an obvious way to improve this or if you think I'm an idiot, please let me know on [Twitter](https://twitter.com/raymondedwards).
+If you see a way to improve this or something I missed, please let me know on [Twitter](https://twitter.com/raymondedwards).
 Thanks!

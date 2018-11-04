@@ -5,12 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ page.title }}</title>
     <meta name="author" content="Raymond Edwards">
-    <meta name="description" content="I just don't know.">
-    <link rel="stylesheet" href="/css/stylin.css">
+    <meta name="description" content="what a mess">
+    <link rel="stylesheet" href="{{ "/css/stylin.css" | relative_url }}">
+    <style>
+        span {
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
-    {% include header.html %}
-    
-    {{content}}
+    <h1><span style="transform: rotate(21deg);">w</span>elco<span style="transform: rotate(-14deg) translate(0em, .2em);">m</span>e <span style="transform: rotate(-5deg);">t</span>o m<span style="transform: rotate(20deg) translate(-.1em, -.2em);">y</span> webs<span style="transform: rotate(181deg);">i</span>t<span style="transform: rotate(9deg) translate(0em, .25em);">e</span><span style="transform: rotate(15deg) translate(0em, .3em);">,</span></h1>
+    <p>excuse the mess, my name is <b>Raymond Edwards</b>, here are some links:</p>
+    <a href="">my resumé</a>
+    <br/>
+    <a href="/blog">seldom-updated blog</a>
+    <br/> 
+    <a href="/orangesite"></a>
+    <p>I'm a professional software developer. I had a Geocities page once. It was 
+        much cooler and less readable than this.
+    </p>
 </body>
 </html>
