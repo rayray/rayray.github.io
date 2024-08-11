@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title }}</title>
+    <meta name="author" content="Raymond Edwards">
+    <meta name="description" content="bloggin">
+    <link rel="stylesheet" href="{{ "/css/stylin.css" | relative_url }}">
+</head>
+<body>
+    {% include header.html %}
+
+    {{ content }}
+</body>
+</html>
